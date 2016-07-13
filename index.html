@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content=" ">
+    <meta name="author" content=" ">
     <link rel="icon" href="http://blog.kathyreid.id.au/favicon.ico">
 
     <title>Visualisation of collection items - Geelong Regional Libraries</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
+
+    <!--Leaflet CSS -->
+    <link href="css/leaflet.css" rel="stylesheet"/>
+    <link href="css/mapbox.css" rel="stylesheet" />
+    <style>
+    #map { height: 600px;
+           width: 100%;
+           border-top: 2px solid #8bb84a;
+           border-bottom: 2px solid #8bb84a;
+           margin: 15px 0px 25px 0px;
+         }
+    #legend {
+        height: 160px;
+        width: 260px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid #8bb84a;
+        position: relative;
+        bottom: -70%;
+        left: 8%;
+        z-index: 99;
+        font-family: 'Abel';
+        color: white;
+        padding: 1%;
+    }
+    #legend h2 {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 160%;
+    }
+    #legend li {
+      font-size: 160%;
+      list-style-type: none;
+      text-align: left;
+      padding: 2% 0 2% 0;
+    }
+    .leaflet-popup-content {
+      border: 2px solid #8bb84a;
+      font-size: 150%;
+    }
+    </style>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -35,33 +72,28 @@
 
   <body data-pinterest-extension-installed="ff1.37.9">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Geelong Regional Libraries: Collection volume by geographic location</h1>
+        <p class="lead">A visualisation of <a href="http://data.gov.au/dataset/grlc-library-collection-by-branch-city-of-greater-geelong">open data</a> in <a href="http://leafletjs.com">Leaflet.js</a> and <a href="https://www.mapbox.com/mapbox.js">Mapbox.js</a></p>
+
+        <div id="map">
+          <div id="legend">
+            <h2>Other resources</h2>
+
+          </div>
+        </div>
+
+        <p>
+          <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geelong Regional Libraries Corporation open data visualisation</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://kathyreid.id.au" property="cc:attributionName" rel="cc:attributionURL">Kathy Reid</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://data.gov.au/dataset/grlc-library-collection-by-branch-city-of-greater-geelong" rel="dct:source">https://data.gov.au/dataset/grlc-library-collection-by-branch-city-of-greater-geelong</a>.
+        </p>
+
       </div>
+
+
+
+
 
     </div><!-- /.container -->
 
@@ -69,11 +101,18 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="css/jquery.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="css/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="css/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="js/leaflet.js"></script>
+    <script src="js/mapbox.standalone.js"></script>
+
+    <!-- The actual script that does the visualisation -->
+    <script src="js/grlc-data-viz.js"></script>
 
 
 </body></html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2.4931142mm"
+   height="2.4931142mm"
+   viewBox="0 0 8.8338693 8.8338693"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="circle-icon.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="65.642857"
+     inkscape:cx="4.4169302"
+     inkscape:cy="4.4169379"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-106.30861,-471.88504)">
+    <path
+       style="opacity:0.53;fill:#8bb84a;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:6.5;stroke-dasharray:none;stroke-opacity:0"
+       d="M 4.4160156 0.5 A 3.9169345 3.9169345 0 0 0 0.5 4.4160156 A 3.9169345 3.9169345 0 0 0 4.4160156 8.3339844 A 3.9169345 3.9169345 0 0 0 8.3339844 4.4160156 A 3.9169345 3.9169345 0 0 0 4.4160156 0.5 z M 4.4160156 1.6757812 A 2.7418542 2.7418542 0 0 1 7.1582031 4.4160156 A 2.7418542 2.7418542 0 0 1 4.4160156 7.1582031 A 2.7418542 2.7418542 0 0 1 1.6757812 4.4160156 A 2.7418542 2.7418542 0 0 1 4.4160156 1.6757812 z M 4.4160156 2.8496094 A 1.5667739 1.5667738 0 0 0 2.8496094 4.4160156 A 1.5667739 1.5667738 0 0 0 4.4160156 5.984375 A 1.5667739 1.5667738 0 0 0 5.984375 4.4160156 A 1.5667739 1.5667738 0 0 0 4.4160156 2.8496094 z "
+       id="path3336-3"
+       transform="translate(106.30861,471.88504)" />
+  </g>
+</svg>

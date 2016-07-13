@@ -261,6 +261,10 @@ th {
   }
 }
 @font-face {
+  font-family: 'Abel';
+  src: url('../fonts/Abel-Regular.ttf') format ('truetype');
+}
+@font-face {
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
@@ -1082,9 +1086,9 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
+  font-family: "Abel", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
   color: #333;
   background-color: #fff;
 }
@@ -1265,7 +1269,7 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 42px;
 }
 h2,
 .h2 {
@@ -1583,8 +1587,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -1600,7 +1604,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 100%;
   }
 }
 .container-fluid {
