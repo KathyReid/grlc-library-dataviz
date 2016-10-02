@@ -26,6 +26,8 @@ var width = 2000,
     height = 768,
     radius = Math.min(width, height) / 2;
 
+var padAngle = 0.01;
+
 var color = d3.scaleOrdinal()
     .range([
         "#59d134",
@@ -55,17 +57,22 @@ var color = d3.scaleOrdinal()
 var CollectionArc = d3.arc()
     .outerRadius(radius - 10)
     .innerRadius(radius - 60)
-    .padAngle(0.01);
+    .padAngle(padAngle);
 
 var LoansArc = d3.arc()
     .outerRadius(radius - 50)
     .innerRadius(radius - 110)
-    .padAngle(0.01);
+    .padAngle(padAngle);
 
 var MembersArc = d3.arc()
     .outerRadius(radius - 90)
     .innerRadius(radius - 160)
-    .padAngle(0.01);
+    .padAngle(padAngle);
+
+var EventsArc = d3.arc()
+    .outerRadius(radius - 130)
+    .innerRadius(radius - 210)
+    .padAngle(padAngle);
 
 /*
   Label arcs for each data set
@@ -82,6 +89,10 @@ var LoansLabelArc = d3.arc()
 var MembersLabelArc = d3.arc()
     .outerRadius(radius + 5)
     .innerRadius(radius + 5);
+
+var EventsLabelArc = d3.arc()
+   .outerRadius(radius + 5)
+   .innerRadius(radius + 5);
 
 
 /*
@@ -100,6 +111,10 @@ var MembersPie = d3.pie()
     .sort(null)
     .value(function(d) { return d.Members;});
 
+var EventsPie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.Attendance;});
+
 /*
   SVG object - each annular is added as a layer / group
 */
@@ -117,6 +132,7 @@ var BaseSvg = d3.select("body").append("svg")
 var LoansLayer      = BaseSvg.append('g');
 var CollectionLayer = BaseSvg.append('g');
 var MembersLayer    = BaseSvg.append('g');
+var EventsLayer     = BaseSvg.append('g');
 
 
 /*
@@ -177,6 +193,24 @@ d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
       .text(function(d) { return d.data.Library; });
 });
 
+d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData) {
+  if (error) throw error;
+
+  var g = EventsLayer.selectAll(".arc")
+      .data(EventsPie(EventsData))
+      .enter().append("g")
+      .attr("class", "EventsArc");
+
+  g.append("path")
+      .attr("d", EventsArc)
+      .style("fill", function(d) { return color(d.data.Library); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + EventsLabelArc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.Library; });
+});
+
 
 /*
   Glorious functions of deliciousness
@@ -192,6 +226,10 @@ function LoansType(d) {
 }
 function MembersType(d) {
   d.Members = +d.Members;
+  return d;
+}
+function EventsType(d) {
+  d.Attendance = +d.Attendance;
   return d;
 }
 
