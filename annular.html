@@ -2,15 +2,17 @@
 <meta charset="utf-8">
 <style>
 
-.arc text {
+text {
   font: 10px sans-serif;
   font-weight: bolder;
   color: white;
   text-anchor: middle;
+  display: none;
 }
 
-.arc path {
-  stroke: #fff;
+path {
+  stroke: #000;
+  stroke-width: 1.5;
 }
 
 </style>
@@ -41,47 +43,117 @@ var color = d3.scaleOrdinal()
         "#F0355E",
         "#f0431e",
         "#F8880F",
-        "#FFCC00"
-
+        "#FFCC00",
+        "#ACCF1A"
       ]);
 
-var arc = d3.arc()
-    .outerRadius(radius - 10)
-    .innerRadius(radius - 100);
 
-var labelArc = d3.arc()
+/*
+  Main arcs for each data set
+*/
+
+var CollectionArc = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(radius - 60)
+    .padAngle(0.01);
+
+var LoansArc = d3.arc()
+    .outerRadius(radius - 50)
+    .innerRadius(radius - 110)
+    .padAngle(0.01);
+
+
+/*
+  Label arcs for each data set
+*/
+
+var CollectionLabelArc = d3.arc()
     .outerRadius(radius + 5)
     .innerRadius(radius + 5);
 
-var pie = d3.pie()
+var LoansLabelArc = d3.arc()
+    .outerRadius(radius + 5)
+    .innerRadius(radius + 5);
+
+/*
+  Pie shapes for each data set
+*/
+
+var CollectionPie = d3.pie()
     .sort(null)
     .value(function(d) { return d.Items; });
 
-var svg = d3.select("body").append("svg")
+var LoansPie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.Loans;});
+
+/*
+  SVG object - each annular is added as a layer / group
+*/
+
+var BaseSvg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-d3.csv("data/grlccollection1516.csv", type, function(error, data) {
+/*
+  Layers for each annular
+*/
+
+var LoansLayer      = BaseSvg.append('g');
+var CollectionLayer = BaseSvg.append('g');
+
+
+/*
+  CSV calls for each data set
+*/
+
+d3.csv("data/grlccollection1516.csv", CollectionType, function(error, CollectionData) {
   if (error) throw error;
 
-  var g = svg.selectAll(".arc")
-      .data(pie(data))
+  var g = LoansLayer.selectAll(".arc")
+      .data(CollectionPie(CollectionData))
       .enter().append("g")
-      .attr("class", "arc");
+      .attr("class", "CollectionArc");
 
   g.append("path")
-      .attr("d", arc)
+      .attr("d", CollectionArc)
       .style("fill", function(d) { return color(d.data.Library); });
 
   g.append("text")
-      .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+      .attr("transform", function(d) { return "translate(" + CollectionLabelArc.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .text(function(d) { return d.data.Library; });
 });
 
-function type(d) {
+d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
+  if (error) throw error;
+
+  var g = CollectionLayer.selectAll(".arc")
+      .data(LoansPie(LoansData))
+      .enter().append("g")
+      .attr("class", "LoansArc");
+
+  g.append("path")
+      .attr("d", LoansArc)
+      .style("fill", function(d) { return color(d.data.Library); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + LoansLabelArc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.Library; });
+});
+
+/*
+  Glorious functions of deliciousness
+*/
+
+function CollectionType(d) {
+  d.Items = +d.Items;
+  return d;
+}
+function LoansType(d) {
   d.Items = +d.Items;
   return d;
 }
