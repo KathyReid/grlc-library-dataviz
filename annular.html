@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.arc text {
+  font: 10px sans-serif;
+  font-weight: bolder;
+  color: white;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script>
+
+
+
+var width = 2000,
+    height = 768,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scaleOrdinal()
+    .range([
+        "#59d134",
+        "#4CCA62",
+        "#40C28F",
+        "#33bbbd",
+        "#36AFC7",
+        "#3b98da",
+        "#427DC9",
+        "#5148a6",
+        "#8647A8",
+        "#BC47A9",
+        "#f146ab",
+        "#F03E85",
+        "#F0355E",
+        "#f0431e",
+        "#F8880F",
+        "#FFCC00"
+
+      ]);
+
+var arc = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(radius - 100);
+
+var labelArc = d3.arc()
+    .outerRadius(radius + 5)
+    .innerRadius(radius + 5);
+
+var pie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.Items; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+d3.csv("data/grlccollection1516.csv", type, function(error, data) {
+  if (error) throw error;
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter().append("g")
+      .attr("class", "arc");
+
+  g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.Library); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.Library; });
+});
+
+function type(d) {
+  d.Items = +d.Items;
+  return d;
+}
+
+</script>
