@@ -62,6 +62,10 @@ var LoansArc = d3.arc()
     .innerRadius(radius - 110)
     .padAngle(0.01);
 
+var MembersArc = d3.arc()
+    .outerRadius(radius - 90)
+    .innerRadius(radius - 160)
+    .padAngle(0.01);
 
 /*
   Label arcs for each data set
@@ -75,6 +79,11 @@ var LoansLabelArc = d3.arc()
     .outerRadius(radius + 5)
     .innerRadius(radius + 5);
 
+var MembersLabelArc = d3.arc()
+    .outerRadius(radius + 5)
+    .innerRadius(radius + 5);
+
+
 /*
   Pie shapes for each data set
 */
@@ -86,6 +95,10 @@ var CollectionPie = d3.pie()
 var LoansPie = d3.pie()
     .sort(null)
     .value(function(d) { return d.Loans;});
+
+var MembersPie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.Members;});
 
 /*
   SVG object - each annular is added as a layer / group
@@ -103,6 +116,7 @@ var BaseSvg = d3.select("body").append("svg")
 
 var LoansLayer      = BaseSvg.append('g');
 var CollectionLayer = BaseSvg.append('g');
+var MembersLayer    = BaseSvg.append('g');
 
 
 /*
@@ -145,6 +159,25 @@ d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
       .text(function(d) { return d.data.Library; });
 });
 
+d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
+  if (error) throw error;
+
+  var g = MembersLayer.selectAll(".arc")
+      .data(MembersPie(MembersData))
+      .enter().append("g")
+      .attr("class", "MembersArc");
+
+  g.append("path")
+      .attr("d", MembersArc)
+      .style("fill", function(d) { return color(d.data.Library); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + MembersLabelArc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.Library; });
+});
+
+
 /*
   Glorious functions of deliciousness
 */
@@ -155,6 +188,10 @@ function CollectionType(d) {
 }
 function LoansType(d) {
   d.Items = +d.Items;
+  return d;
+}
+function MembersType(d) {
+  d.Members = +d.Members;
   return d;
 }
 
