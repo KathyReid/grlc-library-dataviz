@@ -104,38 +104,6 @@ var InternetArc = d3.arc()
     .padAngle(padAngle);
 
 /*
-  Label arcs for each data set
-*/
-
-var CollectionLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var LoansLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var MembersLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var EventsLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var VisitsLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var WirelessLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-var InternetLabelArc = d3.arc()
-    .outerRadius(radius + 5)
-    .innerRadius(radius + 5);
-
-/*
   Pie shapes for each data set
 */
 
@@ -205,10 +173,6 @@ d3.csv("data/grlccollection1516.csv", CollectionType, function(error, Collection
       .attr("d", CollectionArc)
       .style("fill", function(d) { return color(d.data.Library); });
 
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + CollectionLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
@@ -222,11 +186,6 @@ d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
   g.append("path")
       .attr("d", LoansArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + LoansLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
@@ -240,11 +199,6 @@ d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
   g.append("path")
       .attr("d", MembersArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + MembersLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData) {
@@ -258,11 +212,6 @@ d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData
   g.append("path")
       .attr("d", EventsArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + EventsLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
@@ -276,11 +225,6 @@ d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
   g.append("path")
       .attr("d", VisitsArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + VisitsLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, WirelessData) {
@@ -294,11 +238,6 @@ d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, Wirele
   g.append("path")
       .attr("d", WirelessArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + WirelessLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(error, InternetData) {
@@ -312,11 +251,6 @@ d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(e
   g.append("path")
       .attr("d", InternetArc)
       .style("fill", function(d) { return color(d.data.Library); });
-
-  g.append("text")
-      .attr("transform", function(d) { return "translate(" + InternetLabelArc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.Library; });
 });
 
 
