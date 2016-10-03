@@ -28,6 +28,9 @@ var width = 2000,
 
 var padAngle = 0.02;
 
+var annularSpacing = 30; // space between different annulars
+var annularWidth = 25; // width of each annular
+
 var color = d3.scaleOrdinal()
     .range([
         "#59d134",
@@ -50,38 +53,52 @@ var color = d3.scaleOrdinal()
       ]);
 
 
+var CollectionArcSequence = 1;
+var LoansArcSequence = 2;
+var MembersArcSequence = 3;
+var EventsArcSequence = 4;
+var VisitsArcSequence = 5;
+var WirelessArcSequence = 6;
+var InternetArcSequence = 7; 
+
+
 /*
   Main arcs for each data set
 */
 
 var CollectionArc = d3.arc()
     .outerRadius(radius - 10)
-    .innerRadius(radius - 60)
+    .innerRadius(radius - 30)
     .padAngle(padAngle);
 
 var LoansArc = d3.arc()
-    .outerRadius(radius - 50)
-    .innerRadius(radius - 110)
+    .outerRadius(radius - 60)
+    .innerRadius(radius - 80)
     .padAngle(padAngle);
 
 var MembersArc = d3.arc()
-    .outerRadius(radius - 90)
-    .innerRadius(radius - 160)
+    .outerRadius(radius - 110)
+    .innerRadius(radius - 130)
     .padAngle(padAngle);
 
 var EventsArc = d3.arc()
-    .outerRadius(radius - 130)
-    .innerRadius(radius - 210)
+    .outerRadius(radius - 160)
+    .innerRadius(radius - 180)
     .padAngle(padAngle);
 
 var VisitsArc = d3.arc()
-    .outerRadius(radius - 170)
-    .innerRadius(radius - 260)
+    .outerRadius(radius - 210)
+    .innerRadius(radius - 230)
     .padAngle(padAngle);
 
 var WirelessArc = d3.arc()
-    .outerRadius(radius - 210)
-    .innerRadius(radius - 310)
+    .outerRadius(radius - 260)
+    .innerRadius(radius - 280)
+    .padAngle(padAngle);
+
+var InternetArc = d3.arc()
+    .outerRadius(radius - 310)
+    .innerRadius(radius - 330)
     .padAngle(padAngle);
 
 /*
@@ -109,6 +126,10 @@ var VisitsLabelArc = d3.arc()
     .innerRadius(radius + 5);
 
 var WirelessLabelArc = d3.arc()
+    .outerRadius(radius + 5)
+    .innerRadius(radius + 5);
+
+var InternetLabelArc = d3.arc()
     .outerRadius(radius + 5)
     .innerRadius(radius + 5);
 
@@ -140,6 +161,10 @@ var WirelessPie = d3.pie()
     .sort(null)
     .value(function(d) { return d.Sessions;});
 
+var InternetPie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.InternetSessions;});
+
 /*
   SVG object - each annular is added as a layer / group
 */
@@ -160,6 +185,7 @@ var MembersLayer    = BaseSvg.append('g');
 var EventsLayer     = BaseSvg.append('g');
 var VisitsLayer     = BaseSvg.append('g');
 var WirelessLayer   = BaseSvg.append('g');
+var InternetLayer   = BaseSvg.append('g');
 
 /*
   CSV calls for each data set
@@ -273,6 +299,24 @@ d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, Wirele
       .text(function(d) { return d.data.Library; });
 });
 
+d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(error, InternetData) {
+  if (error) throw error;
+
+  var g = InternetLayer.selectAll(".arc")
+      .data(InternetPie(InternetData))
+      .enter().append("g")
+      .attr("class", "InternetArc");
+
+  g.append("path")
+      .attr("d", InternetArc)
+      .style("fill", function(d) { return color(d.data.Library); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + InternetLabelArc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.Library; });
+});
+
 
 /*
   Glorious functions of deliciousness
@@ -300,6 +344,10 @@ function VisitsType(d) {
 }
 function WirelessType(d) {
   d.Sessions = +d.Sessions;
+  return d;
+}
+function InternetType(d) {
+  d.InternetSessions = +d.InternetSessions;
   return d;
 }
 
