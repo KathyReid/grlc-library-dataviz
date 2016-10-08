@@ -1,0 +1,48 @@
+
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-SemiBold.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Bold.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-ExtraBold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+svg text {
+  font-size: 16px;
+  font-family: 'Dosis', sans-serif;
+  color: black;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+svg text.legendText {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+svg path {
+  stroke: #000;
+  stroke-width: 1.7;
+  fill: none;
+}
+
+svg path.TitlePath {
+  stroke: none;
+  fill: none;
+}
