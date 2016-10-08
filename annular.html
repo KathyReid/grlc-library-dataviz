@@ -94,8 +94,8 @@ var legendStrokeColor = '#000';
 
 /* Variables used with the d3.tip tooltips */
 
-var tipXOffSet = 10; // x offset for tooltip display in pixels
-var tipYOffSet = 20; // y offset for tooltip display in pixels
+var tipXOffSet = 0; // x offset for tooltip display in pixels
+var tipYOffSet = 0; // y offset for tooltip display in pixels
 
 /*
   Main arcs for each data set
@@ -249,14 +249,12 @@ var LegendLayer     = BaseSvg.append('g');
 d3.csv("data/grlccollection1516.csv", CollectionType, function(error, CollectionData) {
   if (error) throw error;
 
-
-
-var g = CollectionLayer.selectAll(".arc")
+  var g = CollectionLayer.selectAll(".arc")
       .data(CollectionPie(CollectionData))
       .enter().append("g")
       .attr("class", "CollectionArc");
 
-var CollectionTip = d3.tip()
+  var CollectionTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
       .html(function(d) {
@@ -272,9 +270,6 @@ var CollectionTip = d3.tip()
 
 });
 
-
-
-
 d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
   if (error) throw error;
 
@@ -283,9 +278,19 @@ d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
       .enter().append("g")
       .attr("class", "LoansArc");
 
+  var LoansTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.Loans + " loans" ;})
+
+  LoansLayer.call(LoansTip);
+
   g.append("path")
       .attr("d", LoansArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', LoansTip.show)
+      .on('mouseout', LoansTip.hide);
+
 });
 
 d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
@@ -296,9 +301,18 @@ d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
       .enter().append("g")
       .attr("class", "MembersArc");
 
+  var MembersTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.Members + " members" ;})
+
+      LoansLayer.call(MembersTip);
+
   g.append("path")
       .attr("d", MembersArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', MembersTip.show)
+      .on('mouseout', MembersTip.hide);
 });
 
 d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData) {
@@ -309,9 +323,18 @@ d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData
       .enter().append("g")
       .attr("class", "EventsArc");
 
+  var EventsTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.Attendance + " attendees" ;})
+
+  EventsLayer.call(EventsTip);
+
   g.append("path")
       .attr("d", EventsArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', EventsTip.show)
+      .on('mouseout', EventsTip.hide);
 });
 
 d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
@@ -322,9 +345,18 @@ d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
       .enter().append("g")
       .attr("class", "VisitsArc");
 
+  var VisitsTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.Visits + " visits" ;})
+
+  VisitsLayer.call(VisitsTip);
+
   g.append("path")
       .attr("d", VisitsArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', VisitsTip.show)
+      .on('mouseout', VisitsTip.hide);
 });
 
 d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, WirelessData) {
@@ -335,9 +367,18 @@ d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, Wirele
       .enter().append("g")
       .attr("class", "WirelessArc");
 
+  var WirelessTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.Sessions + " sessions" ;})
+
+  WirelessLayer.call(WirelessTip);
+
   g.append("path")
       .attr("d", WirelessArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', WirelessTip.show)
+      .on('mouseout', WirelessTip.hide);
 });
 
 d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(error, InternetData) {
@@ -348,9 +389,18 @@ d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(e
       .enter().append("g")
       .attr("class", "InternetArc");
 
+  var InternetTip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([tipXOffSet, tipYOffSet])
+      .html(function(d) { return d.data.Library +  " - " + d.data.InternetSessions + " sessions" ;})
+
+      InternetLayer.call(InternetTip);
+
   g.append("path")
       .attr("d", InternetArc)
-      .style("fill", function(d) { return color(d.data.Library); });
+      .style("fill", function(d) { return color(d.data.Library); })
+      .on('mouseover', InternetTip.show)
+      .on('mouseout', InternetTip.hide);
 });
 
 /*
