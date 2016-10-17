@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-ExtraLight.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Light.ttf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Medium.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-SemiBold.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Bold.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-ExtraBold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
+svg text {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+svg text.legendText {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+svg path {
+  stroke: #000;
+  stroke-width: 1.7;
+  fill: none;
+}
+
+svg path.TitlePath {
+  stroke: none;
+  fill: none;
+}
+body {
+  font-family: 'Dosis', sans-serif;
+}
+#container {
+  width: 100%;
+}
+#visualisation {
+  position: relative;
+  min-width: 1024px;
+  width: 78%;
+  float: left;
+}
+#narrative {
+  position: relative;
+  min-width: 300px;
+  width: 22%;
+  height: auto;
+  padding: 2%;
+  float: right;
+  border-left: 1px dotted black;
+  text-align: center;
+}
+a {
+  color: #8647A8;
+}
+a:hover {
+  color: #BC47A9;
+}
+h1 {
+  font-size: 180%;
+  font-weight: 300;
+}
+h2 {
+  font-size: 105%;
+  font-weight: 200;
+}
+h3 {
+  font-size: 110%;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+p {
+  font-size: 97%;
+  font-weight: 200;
+}
