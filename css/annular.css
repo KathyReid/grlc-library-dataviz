@@ -69,16 +69,18 @@ body {
 }
 #visualisation {
   position: relative;
-  width: 62%;
+  min-width: 1024px;
+  width: 78%;
   float: left;
 }
 #narrative {
   position: relative;
-  width: 38%;
+  min-width: 300px;
+  width: 22%;
   height: auto;
   padding: 2%;
   float: right;
-  border-left: 2px solid black;
+  border-left: 1px dotted black;
   text-align: center;
 }
 a {
@@ -88,19 +90,20 @@ a:hover {
   color: #BC47A9;
 }
 h1 {
-  font-size: 210%;
+  font-size: 180%;
   font-weight: 300;
 }
 h2 {
-  font-size: 170%;
+  font-size: 105%;
   font-weight: 200;
 }
 h3 {
-  font-size: 150%;
+  font-size: 110%;
   font-weight: 200;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 p {
-  font-size: 115%;
+  font-size: 97%;
   font-weight: 200;
 }

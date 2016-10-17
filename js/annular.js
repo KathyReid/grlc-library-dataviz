@@ -231,35 +231,9 @@ var LegendLayer     = BaseSvg.append('g');
 d3.csv("data/grlccollection1516.csv", CollectionType, function(error, CollectionData) {
   if (error) throw error;
 
-
-
-/*
-var expensesByName = d3.nest()
-  .key(function(d) { return d.name; })
-  .entries(expenses);
-
-  var expensesCount = d3.nest()
-  .key(function(d) { return d.name; })
-  .rollup(function(v) { return v.length; })
-  .entries(expenses);
-console.log(JSON.stringify(expensesCount));
-
-
-var expenseMetrics = d3.nest()
-  .key(function(d) { return d.name; })
-  .rollup(function(v) { return {
-    count: v.length,
-    total: d3.sum(v, function(d) { return d.amount; }),
-    avg: d3.mean(v, function(d) { return d.amount; })
-  }; })
-  .entries(expenses);
-console.log(JSON.stringify(expenseMetrics))
-
-*/
-
   var CollectionItemCount = d3.nest()
-  .rollup(function (v) { return d3.sum(v, function(d) { return d.Items})})
-  .entries(CollectionData);
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Items})})
+    .entries(CollectionData);
 
   var g = CollectionLayer.selectAll(".arc")
       .data(CollectionPie(CollectionData))
@@ -285,6 +259,10 @@ console.log(JSON.stringify(expenseMetrics))
 d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
   if (error) throw error;
 
+  var LoansCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Loans})})
+    .entries(LoansData);
+
   var g = LoansLayer.selectAll(".arc")
       .data(LoansPie(LoansData))
       .enter().append("g")
@@ -293,7 +271,8 @@ d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
   var LoansTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library + " - " + d.data.Loans + " loans" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.Loans / LoansCount)) +  " - " +  (d3.format(",d")(d.data.Loans)) + " loans" ;})
 
   LoansLayer.call(LoansTip);
 
@@ -308,6 +287,10 @@ d3.csv("data/grlcloans1516.csv", LoansType, function(error, LoansData) {
 d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
   if (error) throw error;
 
+  var MembersCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Members})})
+    .entries(MembersData);
+
   var g = MembersLayer.selectAll(".arc")
       .data(MembersPie(MembersData))
       .enter().append("g")
@@ -316,7 +299,8 @@ d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
   var MembersTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library +  " - " + d.data.Members + " members" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.Members / MembersCount)) +  " - " +  (d3.format(",d")(d.data.Members)) + " members" ;})
 
       LoansLayer.call(MembersTip);
 
@@ -330,6 +314,10 @@ d3.csv("data/grlcmembers1516.csv", MembersType, function(error, MembersData) {
 d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData) {
   if (error) throw error;
 
+  var EventsCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Attendance})})
+    .entries(EventsData);
+
   var g = EventsLayer.selectAll(".arc")
       .data(EventsPie(EventsData))
       .enter().append("g")
@@ -338,7 +326,8 @@ d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData
   var EventsTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library +  " - " + d.data.Attendance + " attendees" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.Attendance / EventsCount)) +  " - " +  (d3.format(",d")(d.data.Attendance)) + " event attendees" ;})
 
   EventsLayer.call(EventsTip);
 
@@ -352,6 +341,10 @@ d3.csv("data/grlcprogramsevents1516.csv", EventsType, function(error, EventsData
 d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
   if (error) throw error;
 
+  var VisitsCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Visits})})
+    .entries(VisitsData);
+
   var g = VisitsLayer.selectAll(".arc")
       .data(VisitsPie(VisitsData))
       .enter().append("g")
@@ -360,7 +353,8 @@ d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
   var VisitsTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library +  " - " + d.data.Visits + " visits" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.Visits / VisitsCount)) +  " - " +  (d3.format(",d")(d.data.Visits)) + " visits" ;})
 
   VisitsLayer.call(VisitsTip);
 
@@ -374,6 +368,10 @@ d3.csv("data/grlcvisits1516.csv", VisitsType, function(error, VisitsData) {
 d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, WirelessData) {
   if (error) throw error;
 
+  var WirelessCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.Sessions})})
+    .entries(WirelessData);
+
   var g = WirelessLayer.selectAll(".arc")
       .data(WirelessPie(WirelessData))
       .enter().append("g")
@@ -382,7 +380,8 @@ d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, Wirele
   var WirelessTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library +  " - " + d.data.Sessions + " sessions" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.Sessions / WirelessCount)) +  " - " +  (d3.format(",d")(d.data.Sessions)) + " wireless sessions" ;})
 
   WirelessLayer.call(WirelessTip);
 
@@ -396,6 +395,10 @@ d3.csv("data/grlcwirelesssessions1516.csv", WirelessType, function(error, Wirele
 d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(error, InternetData) {
   if (error) throw error;
 
+  var InternetCount = d3.nest()
+    .rollup(function (v) { return d3.sum(v, function(d) { return d.InternetSessions})})
+    .entries(InternetData);
+
   var g = InternetLayer.selectAll(".arc")
       .data(InternetPie(InternetData))
       .enter().append("g")
@@ -404,7 +407,8 @@ d3.csv("data/grlcpublicaccessinternetsessions1516.csv", InternetType, function(e
   var InternetTip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([tipXOffSet, tipYOffSet])
-      .html(function(d) { return d.data.Library +  " - " + d.data.InternetSessions + " sessions" ;})
+      .html(function(d) {
+        return d.data.Library +  " - "  + (d3.format(",.1%")(d.data.InternetSessions / InternetCount)) +  " - " +  (d3.format(",d")(d.data.InternetSessions)) + " public internet sessions" ;})
 
       InternetLayer.call(InternetTip);
 
