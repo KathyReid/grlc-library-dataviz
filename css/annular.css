@@ -1,4 +1,21 @@
-
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-ExtraLight.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Light.ttf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/Dosis-Medium.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
 @font-face {
   font-family: 'Dosis';
   src: url('../fonts/Dosis-Regular.ttf');
@@ -26,8 +43,6 @@
 
 svg text {
   font-size: 16px;
-  font-family: 'Dosis', sans-serif;
-  color: black;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -45,4 +60,47 @@ svg path {
 svg path.TitlePath {
   stroke: none;
   fill: none;
+}
+body {
+  font-family: 'Dosis', sans-serif;
+}
+#container {
+  width: 100%;
+}
+#visualisation {
+  position: relative;
+  width: 62%;
+  float: left;
+}
+#narrative {
+  position: relative;
+  width: 38%;
+  height: auto;
+  padding: 2%;
+  float: right;
+  border-left: 2px solid black;
+  text-align: center;
+}
+a {
+  color: #8647A8;
+}
+a:hover {
+  color: #BC47A9;
+}
+h1 {
+  font-size: 210%;
+  font-weight: 300;
+}
+h2 {
+  font-size: 170%;
+  font-weight: 200;
+}
+h3 {
+  font-size: 150%;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+p {
+  font-size: 115%;
+  font-weight: 200;
 }
