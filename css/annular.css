@@ -61,28 +61,35 @@ svg path.TitlePath {
   stroke: none;
   fill: none;
 }
+
 body {
   font-family: 'Dosis', sans-serif;
+  margin: 0;
+  padding: 0;
 }
-#container {
+
+#wrapper {
   width: 100%;
+  top: 0;
+  position: absolute;
 }
+
 #visualisation {
   position: relative;
-  min-width: 1024px;
-  width: 78%;
-  float: left;
+  top: 0;
+  width: 100%;
 }
+
 #narrative {
   position: relative;
-  min-width: 300px;
-  width: 22%;
-  height: auto;
-  padding: 2%;
-  float: right;
-  border-left: 1px dotted black;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  border-top: 2px dotted black;
   text-align: center;
 }
+
 a {
   color: #8647A8;
 }
@@ -90,20 +97,20 @@ a:hover {
   color: #BC47A9;
 }
 h1 {
-  font-size: 180%;
+  font-size: 250%;
   font-weight: 300;
 }
 h2 {
-  font-size: 105%;
+  font-size: 185%;
   font-weight: 200;
 }
 h3 {
-  font-size: 110%;
+  font-size: 170%;
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 p {
-  font-size: 97%;
+  font-size: 135%;
   font-weight: 200;
 }
