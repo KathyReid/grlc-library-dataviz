@@ -49,19 +49,22 @@ var VisitsArcSequence     = 4;
 var WirelessArcSequence   = 5;
 var InternetArcSequence   = 6;
 
-var width = 1024,
-    height = 768,
+var widthModifier = 0.85;
+var heightModifier = 0.85;
+
+var width = innerWidth * widthModifier,
+    height = innerHeight * heightModifier,
     radius = Math.min(width, height) / 2;
 
 var annularXOffset  = 100; // how much to shift the annulars horizontally from centre
 var annularYOffset  = 0; // how much to shift the annulars vertically from centre
-var annularSpacing  = 26; // space between different annulars
-var annularWidth    = 22; // width of each annular
+var annularSpacing  = 22; // space between different annulars
+var annularWidth    = 27; // width of each annular
 var annularMargin   = 70; // margin between annulars and canvas
-var padAngle        = 0.027; // amount that each segment of an annular is padded
-var cornerRadius    = 4; // amount that the sectors are rounded
+var padAngle        = 0.035; // amount that each segment of an annular is padded
+var cornerRadius    = 5; // amount that the sectors are rounded
 
-var titleOffSet     = 16; // amount in pixels that the title arc inner and outer radii are offset from the dataset arc that they are labelling
+var titleOffSet     = 15; // amount in pixels that the title arc inner and outer radii are offset from the dataset arc that they are labelling
 var titleRotationOffSet = -14; // amount in percent that the title is rotated from the 180 degree mark
 var endAngle        = 0; // end angle for title arcs
 
@@ -70,7 +73,7 @@ var legendWidth       = 40; // size of each rectangle for the legend
 var legendHeight      = 35; // size of each rectangle for the legend
 var legendXSpacing    = 7; // x offset for series values
 var legendYSpacing    = 10;  // y offset for series values
-var legendPlacementX  = 360 // x co-ordinate for legend placement
+var legendPlacementX  = (width / 2) - (radius / 2) // x co-ordinate for legend placement
 var legendPlacementY  = ((height/2*-1) + (annularMargin)); // y co-ordinate for legend placement
 var legendStrokeColor = '#000';
 
@@ -203,7 +206,7 @@ var InternetPie = d3.pie()
   SVG object - each annular is added as a layer / group
 */
 
-var BaseSvg = d3.select("body").append("svg")
+var BaseSvg = d3.select("#visualisation").append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
@@ -524,7 +527,6 @@ TitleLayer.append("text")
 
 /*
   Add a Legend
-  http://www.competa.com/blog/2015/07/d3-js-part-7-of-9-adding-a-legend-to-explain-the-data/
 */
 
 var legend = LegendLayer.selectAll("g")
